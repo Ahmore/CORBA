@@ -4,18 +4,18 @@
 package sr.grpc.exchanger;
 
 /**
- * Protobuf type {@code exchanger.Response}
+ * Protobuf type {@code exchanger.CurrenciesState}
  */
-public  final class Response extends
+public  final class CurrenciesState extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:exchanger.Response)
-    ResponseOrBuilder {
+    // @@protoc_insertion_point(message_implements:exchanger.CurrenciesState)
+    CurrenciesStateOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use Response.newBuilder() to construct.
-  private Response(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use CurrenciesState.newBuilder() to construct.
+  private CurrenciesState(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private Response() {
+  private CurrenciesState() {
   }
 
   @java.lang.Override
@@ -23,7 +23,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private Response(
+  private CurrenciesState(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -76,7 +76,7 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return sr.grpc.exchanger.ExchangerProto.internal_static_exchanger_Response_descriptor;
+    return sr.grpc.exchanger.ExchangerProto.internal_static_exchanger_CurrenciesState_descriptor;
   }
 
   @SuppressWarnings({"rawtypes"})
@@ -92,9 +92,9 @@ private static final long serialVersionUID = 0L;
   }
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return sr.grpc.exchanger.ExchangerProto.internal_static_exchanger_Response_fieldAccessorTable
+    return sr.grpc.exchanger.ExchangerProto.internal_static_exchanger_CurrenciesState_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            sr.grpc.exchanger.Response.class, sr.grpc.exchanger.Response.Builder.class);
+            sr.grpc.exchanger.CurrenciesState.class, sr.grpc.exchanger.CurrenciesState.Builder.class);
   }
 
   public static final int CURRENCIES_FIELD_NUMBER = 1;
@@ -103,7 +103,7 @@ private static final long serialVersionUID = 0L;
         java.lang.String, java.lang.Float> defaultEntry =
             com.google.protobuf.MapEntry
             .<java.lang.String, java.lang.Float>newDefaultInstance(
-                sr.grpc.exchanger.ExchangerProto.internal_static_exchanger_Response_CurrenciesEntry_descriptor, 
+                sr.grpc.exchanger.ExchangerProto.internal_static_exchanger_CurrenciesState_CurrenciesEntry_descriptor, 
                 com.google.protobuf.WireFormat.FieldType.STRING,
                 "",
                 com.google.protobuf.WireFormat.FieldType.FLOAT,
@@ -219,10 +219,10 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof sr.grpc.exchanger.Response)) {
+    if (!(obj instanceof sr.grpc.exchanger.CurrenciesState)) {
       return super.equals(obj);
     }
-    sr.grpc.exchanger.Response other = (sr.grpc.exchanger.Response) obj;
+    sr.grpc.exchanger.CurrenciesState other = (sr.grpc.exchanger.CurrenciesState) obj;
 
     boolean result = true;
     result = result && internalGetCurrencies().equals(
@@ -247,69 +247,69 @@ private static final long serialVersionUID = 0L;
     return hash;
   }
 
-  public static sr.grpc.exchanger.Response parseFrom(
+  public static sr.grpc.exchanger.CurrenciesState parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static sr.grpc.exchanger.Response parseFrom(
+  public static sr.grpc.exchanger.CurrenciesState parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static sr.grpc.exchanger.Response parseFrom(
+  public static sr.grpc.exchanger.CurrenciesState parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static sr.grpc.exchanger.Response parseFrom(
+  public static sr.grpc.exchanger.CurrenciesState parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static sr.grpc.exchanger.Response parseFrom(byte[] data)
+  public static sr.grpc.exchanger.CurrenciesState parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static sr.grpc.exchanger.Response parseFrom(
+  public static sr.grpc.exchanger.CurrenciesState parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static sr.grpc.exchanger.Response parseFrom(java.io.InputStream input)
+  public static sr.grpc.exchanger.CurrenciesState parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static sr.grpc.exchanger.Response parseFrom(
+  public static sr.grpc.exchanger.CurrenciesState parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static sr.grpc.exchanger.Response parseDelimitedFrom(java.io.InputStream input)
+  public static sr.grpc.exchanger.CurrenciesState parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static sr.grpc.exchanger.Response parseDelimitedFrom(
+  public static sr.grpc.exchanger.CurrenciesState parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static sr.grpc.exchanger.Response parseFrom(
+  public static sr.grpc.exchanger.CurrenciesState parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static sr.grpc.exchanger.Response parseFrom(
+  public static sr.grpc.exchanger.CurrenciesState parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -321,7 +321,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(sr.grpc.exchanger.Response prototype) {
+  public static Builder newBuilder(sr.grpc.exchanger.CurrenciesState prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   public Builder toBuilder() {
@@ -336,15 +336,15 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code exchanger.Response}
+   * Protobuf type {@code exchanger.CurrenciesState}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:exchanger.Response)
-      sr.grpc.exchanger.ResponseOrBuilder {
+      // @@protoc_insertion_point(builder_implements:exchanger.CurrenciesState)
+      sr.grpc.exchanger.CurrenciesStateOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return sr.grpc.exchanger.ExchangerProto.internal_static_exchanger_Response_descriptor;
+      return sr.grpc.exchanger.ExchangerProto.internal_static_exchanger_CurrenciesState_descriptor;
     }
 
     @SuppressWarnings({"rawtypes"})
@@ -371,12 +371,12 @@ private static final long serialVersionUID = 0L;
     }
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return sr.grpc.exchanger.ExchangerProto.internal_static_exchanger_Response_fieldAccessorTable
+      return sr.grpc.exchanger.ExchangerProto.internal_static_exchanger_CurrenciesState_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              sr.grpc.exchanger.Response.class, sr.grpc.exchanger.Response.Builder.class);
+              sr.grpc.exchanger.CurrenciesState.class, sr.grpc.exchanger.CurrenciesState.Builder.class);
     }
 
-    // Construct using sr.grpc.exchanger.Response.newBuilder()
+    // Construct using sr.grpc.exchanger.CurrenciesState.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -399,23 +399,23 @@ private static final long serialVersionUID = 0L;
 
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return sr.grpc.exchanger.ExchangerProto.internal_static_exchanger_Response_descriptor;
+      return sr.grpc.exchanger.ExchangerProto.internal_static_exchanger_CurrenciesState_descriptor;
     }
 
-    public sr.grpc.exchanger.Response getDefaultInstanceForType() {
-      return sr.grpc.exchanger.Response.getDefaultInstance();
+    public sr.grpc.exchanger.CurrenciesState getDefaultInstanceForType() {
+      return sr.grpc.exchanger.CurrenciesState.getDefaultInstance();
     }
 
-    public sr.grpc.exchanger.Response build() {
-      sr.grpc.exchanger.Response result = buildPartial();
+    public sr.grpc.exchanger.CurrenciesState build() {
+      sr.grpc.exchanger.CurrenciesState result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
       return result;
     }
 
-    public sr.grpc.exchanger.Response buildPartial() {
-      sr.grpc.exchanger.Response result = new sr.grpc.exchanger.Response(this);
+    public sr.grpc.exchanger.CurrenciesState buildPartial() {
+      sr.grpc.exchanger.CurrenciesState result = new sr.grpc.exchanger.CurrenciesState(this);
       int from_bitField0_ = bitField0_;
       result.currencies_ = internalGetCurrencies();
       result.currencies_.makeImmutable();
@@ -450,16 +450,16 @@ private static final long serialVersionUID = 0L;
       return (Builder) super.addRepeatedField(field, value);
     }
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof sr.grpc.exchanger.Response) {
-        return mergeFrom((sr.grpc.exchanger.Response)other);
+      if (other instanceof sr.grpc.exchanger.CurrenciesState) {
+        return mergeFrom((sr.grpc.exchanger.CurrenciesState)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(sr.grpc.exchanger.Response other) {
-      if (other == sr.grpc.exchanger.Response.getDefaultInstance()) return this;
+    public Builder mergeFrom(sr.grpc.exchanger.CurrenciesState other) {
+      if (other == sr.grpc.exchanger.CurrenciesState.getDefaultInstance()) return this;
       internalGetMutableCurrencies().mergeFrom(
           other.internalGetCurrencies());
       this.mergeUnknownFields(other.unknownFields);
@@ -475,11 +475,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      sr.grpc.exchanger.Response parsedMessage = null;
+      sr.grpc.exchanger.CurrenciesState parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (sr.grpc.exchanger.Response) e.getUnfinishedMessage();
+        parsedMessage = (sr.grpc.exchanger.CurrenciesState) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -623,39 +623,39 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:exchanger.Response)
+    // @@protoc_insertion_point(builder_scope:exchanger.CurrenciesState)
   }
 
-  // @@protoc_insertion_point(class_scope:exchanger.Response)
-  private static final sr.grpc.exchanger.Response DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:exchanger.CurrenciesState)
+  private static final sr.grpc.exchanger.CurrenciesState DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new sr.grpc.exchanger.Response();
+    DEFAULT_INSTANCE = new sr.grpc.exchanger.CurrenciesState();
   }
 
-  public static sr.grpc.exchanger.Response getDefaultInstance() {
+  public static sr.grpc.exchanger.CurrenciesState getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<Response>
-      PARSER = new com.google.protobuf.AbstractParser<Response>() {
-    public Response parsePartialFrom(
+  private static final com.google.protobuf.Parser<CurrenciesState>
+      PARSER = new com.google.protobuf.AbstractParser<CurrenciesState>() {
+    public CurrenciesState parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new Response(input, extensionRegistry);
+      return new CurrenciesState(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<Response> parser() {
+  public static com.google.protobuf.Parser<CurrenciesState> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<Response> getParserForType() {
+  public com.google.protobuf.Parser<CurrenciesState> getParserForType() {
     return PARSER;
   }
 
-  public sr.grpc.exchanger.Response getDefaultInstanceForType() {
+  public sr.grpc.exchanger.CurrenciesState getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

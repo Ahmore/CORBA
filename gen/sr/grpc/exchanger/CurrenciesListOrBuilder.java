@@ -3,8 +3,8 @@
 
 package sr.grpc.exchanger;
 
-public interface RequestOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:exchanger.Request)
+public interface CurrenciesListOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:exchanger.CurrenciesList)
     com.google.protobuf.MessageOrBuilder {
 
   /**

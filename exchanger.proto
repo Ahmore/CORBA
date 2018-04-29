@@ -7,16 +7,16 @@ option objc_class_prefix = "HLW";
 
 package exchanger;
 
-message Request
+message CurrenciesList
 {
   repeated string currencies = 1;
 }
 
-message Response
+message CurrenciesState
 {
   map<string, float> currencies = 1;
 }
 
-service Stream {
-    rpc GetCurrencies(Request) returns (stream Response) {}
+service ExchangerStream {
+    rpc GetCurrencies(CurrenciesList) returns (stream CurrenciesState) {}
 }

@@ -3,8 +3,8 @@
 
 package sr.grpc.exchanger;
 
-public interface ResponseOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:exchanger.Response)
+public interface CurrenciesStateOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:exchanger.CurrenciesState)
     com.google.protobuf.MessageOrBuilder {
 
   /**

@@ -15,20 +15,20 @@ public final class ExchangerProto {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_exchanger_Request_descriptor;
+    internal_static_exchanger_CurrenciesList_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_exchanger_Request_fieldAccessorTable;
+      internal_static_exchanger_CurrenciesList_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_exchanger_Response_descriptor;
+    internal_static_exchanger_CurrenciesState_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_exchanger_Response_fieldAccessorTable;
+      internal_static_exchanger_CurrenciesState_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_exchanger_Response_CurrenciesEntry_descriptor;
+    internal_static_exchanger_CurrenciesState_CurrenciesEntry_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_exchanger_Response_CurrenciesEntry_fieldAccessorTable;
+      internal_static_exchanger_CurrenciesState_CurrenciesEntry_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -38,14 +38,15 @@ public final class ExchangerProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\017exchanger.proto\022\texchanger\"\035\n\007Request\022" +
-      "\022\n\ncurrencies\030\001 \003(\t\"v\n\010Response\0227\n\ncurre" +
-      "ncies\030\001 \003(\0132#.exchanger.Response.Currenc" +
-      "iesEntry\0321\n\017CurrenciesEntry\022\013\n\003key\030\001 \001(\t" +
-      "\022\r\n\005value\030\002 \001(\002:\0028\0012F\n\006Stream\022<\n\rGetCurr" +
-      "encies\022\022.exchanger.Request\032\023.exchanger.R" +
-      "esponse\"\0000\001B+\n\021sr.grpc.exchangerB\016Exchan" +
-      "gerProtoP\001\242\002\003HLWb\006proto3"
+      "\n\017exchanger.proto\022\texchanger\"$\n\016Currenci" +
+      "esList\022\022\n\ncurrencies\030\001 \003(\t\"\204\001\n\017Currencie" +
+      "sState\022>\n\ncurrencies\030\001 \003(\0132*.exchanger.C" +
+      "urrenciesState.CurrenciesEntry\0321\n\017Curren" +
+      "ciesEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\002:\0028" +
+      "\0012]\n\017ExchangerStream\022J\n\rGetCurrencies\022\031." +
+      "exchanger.CurrenciesList\032\032.exchanger.Cur" +
+      "renciesState\"\0000\001B+\n\021sr.grpc.exchangerB\016E" +
+      "xchangerProtoP\001\242\002\003HLWb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -59,23 +60,23 @@ public final class ExchangerProto {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
-    internal_static_exchanger_Request_descriptor =
+    internal_static_exchanger_CurrenciesList_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_exchanger_Request_fieldAccessorTable = new
+    internal_static_exchanger_CurrenciesList_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_exchanger_Request_descriptor,
+        internal_static_exchanger_CurrenciesList_descriptor,
         new java.lang.String[] { "Currencies", });
-    internal_static_exchanger_Response_descriptor =
+    internal_static_exchanger_CurrenciesState_descriptor =
       getDescriptor().getMessageTypes().get(1);
-    internal_static_exchanger_Response_fieldAccessorTable = new
+    internal_static_exchanger_CurrenciesState_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_exchanger_Response_descriptor,
+        internal_static_exchanger_CurrenciesState_descriptor,
         new java.lang.String[] { "Currencies", });
-    internal_static_exchanger_Response_CurrenciesEntry_descriptor =
-      internal_static_exchanger_Response_descriptor.getNestedTypes().get(0);
-    internal_static_exchanger_Response_CurrenciesEntry_fieldAccessorTable = new
+    internal_static_exchanger_CurrenciesState_CurrenciesEntry_descriptor =
+      internal_static_exchanger_CurrenciesState_descriptor.getNestedTypes().get(0);
+    internal_static_exchanger_CurrenciesState_CurrenciesEntry_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_exchanger_Response_CurrenciesEntry_descriptor,
+        internal_static_exchanger_CurrenciesState_CurrenciesEntry_descriptor,
         new java.lang.String[] { "Key", "Value", });
   }
 

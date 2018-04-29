@@ -20,54 +20,54 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
 @javax.annotation.Generated(
     value = "by gRPC proto compiler (version 1.2.0)",
     comments = "Source: exchanger.proto")
-public final class StreamGrpc {
+public final class ExchangerStreamGrpc {
 
-  private StreamGrpc() {}
+  private ExchangerStreamGrpc() {}
 
-  public static final String SERVICE_NAME = "exchanger.Stream";
+  public static final String SERVICE_NAME = "exchanger.ExchangerStream";
 
   // Static method descriptors that strictly reflect the proto.
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
-  public static final io.grpc.MethodDescriptor<sr.grpc.exchanger.Request,
-      sr.grpc.exchanger.Response> METHOD_GET_CURRENCIES =
+  public static final io.grpc.MethodDescriptor<sr.grpc.exchanger.CurrenciesList,
+      sr.grpc.exchanger.CurrenciesState> METHOD_GET_CURRENCIES =
       io.grpc.MethodDescriptor.create(
           io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING,
           generateFullMethodName(
-              "exchanger.Stream", "GetCurrencies"),
-          io.grpc.protobuf.ProtoUtils.marshaller(sr.grpc.exchanger.Request.getDefaultInstance()),
-          io.grpc.protobuf.ProtoUtils.marshaller(sr.grpc.exchanger.Response.getDefaultInstance()));
+              "exchanger.ExchangerStream", "GetCurrencies"),
+          io.grpc.protobuf.ProtoUtils.marshaller(sr.grpc.exchanger.CurrenciesList.getDefaultInstance()),
+          io.grpc.protobuf.ProtoUtils.marshaller(sr.grpc.exchanger.CurrenciesState.getDefaultInstance()));
 
   /**
    * Creates a new async stub that supports all call types for the service
    */
-  public static StreamStub newStub(io.grpc.Channel channel) {
-    return new StreamStub(channel);
+  public static ExchangerStreamStub newStub(io.grpc.Channel channel) {
+    return new ExchangerStreamStub(channel);
   }
 
   /**
    * Creates a new blocking-style stub that supports unary and streaming output calls on the service
    */
-  public static StreamBlockingStub newBlockingStub(
+  public static ExchangerStreamBlockingStub newBlockingStub(
       io.grpc.Channel channel) {
-    return new StreamBlockingStub(channel);
+    return new ExchangerStreamBlockingStub(channel);
   }
 
   /**
    * Creates a new ListenableFuture-style stub that supports unary and streaming output calls on the service
    */
-  public static StreamFutureStub newFutureStub(
+  public static ExchangerStreamFutureStub newFutureStub(
       io.grpc.Channel channel) {
-    return new StreamFutureStub(channel);
+    return new ExchangerStreamFutureStub(channel);
   }
 
   /**
    */
-  public static abstract class StreamImplBase implements io.grpc.BindableService {
+  public static abstract class ExchangerStreamImplBase implements io.grpc.BindableService {
 
     /**
      */
-    public void getCurrencies(sr.grpc.exchanger.Request request,
-        io.grpc.stub.StreamObserver<sr.grpc.exchanger.Response> responseObserver) {
+    public void getCurrencies(sr.grpc.exchanger.CurrenciesList request,
+        io.grpc.stub.StreamObserver<sr.grpc.exchanger.CurrenciesState> responseObserver) {
       asyncUnimplementedUnaryCall(METHOD_GET_CURRENCIES, responseObserver);
     }
 
@@ -77,8 +77,8 @@ public final class StreamGrpc {
             METHOD_GET_CURRENCIES,
             asyncServerStreamingCall(
               new MethodHandlers<
-                sr.grpc.exchanger.Request,
-                sr.grpc.exchanger.Response>(
+                sr.grpc.exchanger.CurrenciesList,
+                sr.grpc.exchanger.CurrenciesState>(
                   this, METHODID_GET_CURRENCIES)))
           .build();
     }
@@ -86,26 +86,26 @@ public final class StreamGrpc {
 
   /**
    */
-  public static final class StreamStub extends io.grpc.stub.AbstractStub<StreamStub> {
-    private StreamStub(io.grpc.Channel channel) {
+  public static final class ExchangerStreamStub extends io.grpc.stub.AbstractStub<ExchangerStreamStub> {
+    private ExchangerStreamStub(io.grpc.Channel channel) {
       super(channel);
     }
 
-    private StreamStub(io.grpc.Channel channel,
+    private ExchangerStreamStub(io.grpc.Channel channel,
         io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected StreamStub build(io.grpc.Channel channel,
+    protected ExchangerStreamStub build(io.grpc.Channel channel,
         io.grpc.CallOptions callOptions) {
-      return new StreamStub(channel, callOptions);
+      return new ExchangerStreamStub(channel, callOptions);
     }
 
     /**
      */
-    public void getCurrencies(sr.grpc.exchanger.Request request,
-        io.grpc.stub.StreamObserver<sr.grpc.exchanger.Response> responseObserver) {
+    public void getCurrencies(sr.grpc.exchanger.CurrenciesList request,
+        io.grpc.stub.StreamObserver<sr.grpc.exchanger.CurrenciesState> responseObserver) {
       asyncServerStreamingCall(
           getChannel().newCall(METHOD_GET_CURRENCIES, getCallOptions()), request, responseObserver);
     }
@@ -113,26 +113,26 @@ public final class StreamGrpc {
 
   /**
    */
-  public static final class StreamBlockingStub extends io.grpc.stub.AbstractStub<StreamBlockingStub> {
-    private StreamBlockingStub(io.grpc.Channel channel) {
+  public static final class ExchangerStreamBlockingStub extends io.grpc.stub.AbstractStub<ExchangerStreamBlockingStub> {
+    private ExchangerStreamBlockingStub(io.grpc.Channel channel) {
       super(channel);
     }
 
-    private StreamBlockingStub(io.grpc.Channel channel,
+    private ExchangerStreamBlockingStub(io.grpc.Channel channel,
         io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected StreamBlockingStub build(io.grpc.Channel channel,
+    protected ExchangerStreamBlockingStub build(io.grpc.Channel channel,
         io.grpc.CallOptions callOptions) {
-      return new StreamBlockingStub(channel, callOptions);
+      return new ExchangerStreamBlockingStub(channel, callOptions);
     }
 
     /**
      */
-    public java.util.Iterator<sr.grpc.exchanger.Response> getCurrencies(
-        sr.grpc.exchanger.Request request) {
+    public java.util.Iterator<sr.grpc.exchanger.CurrenciesState> getCurrencies(
+        sr.grpc.exchanger.CurrenciesList request) {
       return blockingServerStreamingCall(
           getChannel(), METHOD_GET_CURRENCIES, getCallOptions(), request);
     }
@@ -140,20 +140,20 @@ public final class StreamGrpc {
 
   /**
    */
-  public static final class StreamFutureStub extends io.grpc.stub.AbstractStub<StreamFutureStub> {
-    private StreamFutureStub(io.grpc.Channel channel) {
+  public static final class ExchangerStreamFutureStub extends io.grpc.stub.AbstractStub<ExchangerStreamFutureStub> {
+    private ExchangerStreamFutureStub(io.grpc.Channel channel) {
       super(channel);
     }
 
-    private StreamFutureStub(io.grpc.Channel channel,
+    private ExchangerStreamFutureStub(io.grpc.Channel channel,
         io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected StreamFutureStub build(io.grpc.Channel channel,
+    protected ExchangerStreamFutureStub build(io.grpc.Channel channel,
         io.grpc.CallOptions callOptions) {
-      return new StreamFutureStub(channel, callOptions);
+      return new ExchangerStreamFutureStub(channel, callOptions);
     }
   }
 
@@ -164,10 +164,10 @@ public final class StreamGrpc {
       io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
-    private final StreamImplBase serviceImpl;
+    private final ExchangerStreamImplBase serviceImpl;
     private final int methodId;
 
-    MethodHandlers(StreamImplBase serviceImpl, int methodId) {
+    MethodHandlers(ExchangerStreamImplBase serviceImpl, int methodId) {
       this.serviceImpl = serviceImpl;
       this.methodId = methodId;
     }
@@ -177,8 +177,8 @@ public final class StreamGrpc {
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         case METHODID_GET_CURRENCIES:
-          serviceImpl.getCurrencies((sr.grpc.exchanger.Request) request,
-              (io.grpc.stub.StreamObserver<sr.grpc.exchanger.Response>) responseObserver);
+          serviceImpl.getCurrencies((sr.grpc.exchanger.CurrenciesList) request,
+              (io.grpc.stub.StreamObserver<sr.grpc.exchanger.CurrenciesState>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -196,7 +196,7 @@ public final class StreamGrpc {
     }
   }
 
-  private static final class StreamDescriptorSupplier implements io.grpc.protobuf.ProtoFileDescriptorSupplier {
+  private static final class ExchangerStreamDescriptorSupplier implements io.grpc.protobuf.ProtoFileDescriptorSupplier {
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
       return sr.grpc.exchanger.ExchangerProto.getDescriptor();
@@ -208,11 +208,11 @@ public final class StreamGrpc {
   public static io.grpc.ServiceDescriptor getServiceDescriptor() {
     io.grpc.ServiceDescriptor result = serviceDescriptor;
     if (result == null) {
-      synchronized (StreamGrpc.class) {
+      synchronized (ExchangerStreamGrpc.class) {
         result = serviceDescriptor;
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
-              .setSchemaDescriptor(new StreamDescriptorSupplier())
+              .setSchemaDescriptor(new ExchangerStreamDescriptorSupplier())
               .addMethod(METHOD_GET_CURRENCIES)
               .build();
         }
