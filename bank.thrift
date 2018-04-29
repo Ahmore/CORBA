@@ -1,4 +1,4 @@
-namespace java sr.rpc.exchanger
+namespace java sr.rpc.bank
 
 enum AccountType {
     STANDARD = 1,
@@ -12,13 +12,14 @@ struct Account {
     4: double income,
     5: double amount,
     6: string currency,
-    7: optional AccountType type
+    7: optional AccountType type,
+    8: optional string guid
 }
 
 struct Date {
     1: i32 day,
     2: i32 month,
-    3: i32 year,
+    3: i32 year
 }
 
 struct CreditRequest {

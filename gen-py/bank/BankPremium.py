@@ -11,7 +11,7 @@ from thrift.protocol.TProtocol import TProtocolException
 from thrift.TRecursive import fix_spec
 
 import sys
-import exchanger.BankStandard
+import bank.BankStandard
 import logging
 from .ttypes import *
 from thrift.Thrift import TProcessor
@@ -19,7 +19,7 @@ from thrift.transport import TTransport
 all_structs = []
 
 
-class Iface(exchanger.BankStandard.Iface):
+class Iface(bank.BankStandard.Iface):
     def getCredit(self, creditRequest):
         """
         Parameters:
@@ -28,9 +28,9 @@ class Iface(exchanger.BankStandard.Iface):
         pass
 
 
-class Client(exchanger.BankStandard.Client, Iface):
+class Client(bank.BankStandard.Client, Iface):
     def __init__(self, iprot, oprot=None):
-        exchanger.BankStandard.Client.__init__(self, iprot, oprot)
+        bank.BankStandard.Client.__init__(self, iprot, oprot)
 
     def getCredit(self, creditRequest):
         """
@@ -68,9 +68,9 @@ class Client(exchanger.BankStandard.Client, Iface):
         raise TApplicationException(TApplicationException.MISSING_RESULT, "getCredit failed: unknown result")
 
 
-class Processor(exchanger.BankStandard.Processor, Iface, TProcessor):
+class Processor(bank.BankStandard.Processor, Iface, TProcessor):
     def __init__(self, handler):
-        exchanger.BankStandard.Processor.__init__(self, handler)
+        bank.BankStandard.Processor.__init__(self, handler)
         self._processMap["getCredit"] = Processor.process_getCredit
 
     def process(self, iprot, oprot):

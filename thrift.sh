@@ -1,2 +1,2 @@
-./thrift --gen java exchanger.thrift
-./thrift --gen py exchanger.thrift
+./thrift --gen java bank.thrift
+./thrift --gen py bank.thrift

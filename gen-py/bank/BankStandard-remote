@@ -16,15 +16,14 @@ else:
 from thrift.transport import TTransport, TSocket, TSSLSocket, THttpClient
 from thrift.protocol.TBinaryProtocol import TBinaryProtocol
 
-from exchanger import BankPremium
-from exchanger.ttypes import *
+from bank import BankStandard
+from bank.ttypes import *
 
 if len(sys.argv) <= 1 or sys.argv[1] == '--help':
     print('')
     print('Usage: ' + sys.argv[0] + ' [-h host[:port]] [-u url] [-f[ramed]] [-s[sl]] [-novalidate] [-ca_certs certs] [-keyfile keyfile] [-certfile certfile] function [arg1 [arg2...]]')
     print('')
     print('Functions:')
-    print('  CreditResponse getCredit(CreditRequest creditRequest)')
     print('  Account getInfo(string guid)')
     print('')
     sys.exit(0)
@@ -102,16 +101,10 @@ else:
     else:
         transport = TTransport.TBufferedTransport(socket)
 protocol = TBinaryProtocol(transport)
-client = BankPremium.Client(protocol)
+client = BankStandard.Client(protocol)
 transport.open()
 
-if cmd == 'getCredit':
-    if len(args) != 1:
-        print('getCredit requires 1 args')
-        sys.exit(1)
-    pp.pprint(client.getCredit(eval(args[0]),))
-
-elif cmd == 'getInfo':
+if cmd == 'getInfo':
     if len(args) != 1:
         print('getInfo requires 1 args')
         sys.exit(1)

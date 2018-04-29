@@ -41,10 +41,11 @@ class Account(object):
      - amount
      - currency
      - type
+     - guid
     """
 
 
-    def __init__(self, name=None, surname=None, pesel=None, income=None, amount=None, currency=None, type=None,):
+    def __init__(self, name=None, surname=None, pesel=None, income=None, amount=None, currency=None, type=None, guid=None,):
         self.name = name
         self.surname = surname
         self.pesel = pesel
@@ -52,6 +53,7 @@ class Account(object):
         self.amount = amount
         self.currency = currency
         self.type = type
+        self.guid = guid
 
     def read(self, iprot):
         if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
@@ -97,6 +99,11 @@ class Account(object):
                     self.type = iprot.readI32()
                 else:
                     iprot.skip(ftype)
+            elif fid == 8:
+                if ftype == TType.STRING:
+                    self.guid = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                else:
+                    iprot.skip(ftype)
             else:
                 iprot.skip(ftype)
             iprot.readFieldEnd()
@@ -134,6 +141,10 @@ class Account(object):
         if self.type is not None:
             oprot.writeFieldBegin('type', TType.I32, 7)
             oprot.writeI32(self.type)
+            oprot.writeFieldEnd()
+        if self.guid is not None:
+            oprot.writeFieldBegin('guid', TType.STRING, 8)
+            oprot.writeString(self.guid.encode('utf-8') if sys.version_info[0] == 2 else self.guid)
             oprot.writeFieldEnd()
         oprot.writeFieldStop()
         oprot.writeStructEnd()
@@ -640,6 +651,7 @@ Account.thrift_spec = (
     (5, TType.DOUBLE, 'amount', None, None, ),  # 5
     (6, TType.STRING, 'currency', 'UTF8', None, ),  # 6
     (7, TType.I32, 'type', None, None, ),  # 7
+    (8, TType.STRING, 'guid', 'UTF8', None, ),  # 8
 )
 all_structs.append(Date)
 Date.thrift_spec = (
