@@ -1,2 +1,2 @@
-thrift --gen java calculator.thrift
-thrift --gen py calculator.thrift
+./thrift --gen java exchanger.thrift
+./thrift --gen py exchanger.thrift

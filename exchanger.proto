@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "sr.grpc.exchanger";
+option java_outer_classname = "ExchangerProto";
+option objc_class_prefix = "HLW";
+
+package exchanger;
+
+message Request
+{
+  repeated string currencies = 1;
+}
+
+message Response
+{
+  map<string, float> currencies = 1;
+}
+
+service Stream {
+    rpc GetCurrencies(Request) returns (stream Response) {}
+}
