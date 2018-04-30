@@ -24,7 +24,8 @@ if len(sys.argv) <= 1 or sys.argv[1] == '--help':
     print('Usage: ' + sys.argv[0] + ' [-h host[:port]] [-u url] [-f[ramed]] [-s[sl]] [-novalidate] [-ca_certs certs] [-keyfile keyfile] [-certfile certfile] function [arg1 [arg2...]]')
     print('')
     print('Functions:')
-    print('  string create(Account newAccount)')
+    print('  Account create(Account newAccount)')
+    print('  Account login(string guid)')
     print('')
     sys.exit(0)
 
@@ -109,6 +110,12 @@ if cmd == 'create':
         print('create requires 1 args')
         sys.exit(1)
     pp.pprint(client.create(eval(args[0]),))
+
+elif cmd == 'login':
+    if len(args) != 1:
+        print('login requires 1 args')
+        sys.exit(1)
+    pp.pprint(client.login(args[0],))
 
 else:
     print('Unrecognized method %s' % cmd)

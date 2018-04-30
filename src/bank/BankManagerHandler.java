@@ -1,22 +1,23 @@
 package bank;
 
 import org.apache.thrift.TException;
-import sr.rpc.bank.Account;
-import sr.rpc.bank.AccountExists;
-import sr.rpc.bank.AccountType;
-import sr.rpc.bank.BankManager;
+import sr.rpc.bank.*;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class BankManagerHandler implements BankManager.Iface {
-    private HashMap<Long, Account> accounts;
+    private HashMap<String, Account> accounts;
 
-    public BankManagerHandler(HashMap<Long, Account> accounts) {
+    public BankManagerHandler(HashMap<String, Account> accounts) {
         this.accounts = accounts;
     }
 
     @Override
-    public String create(Account account) throws AccountExists, TException {
+    public Account create(Account account) throws AccountExists, TException {
+        System.out.println("[NEW ACCOUNT REQUEST]");
+
+        // TODO Pesel should be string
         if (this.accounts.containsKey(account.pesel)) {
             throw new AccountExists(account.pesel, "Client already exists.");
         }
@@ -32,6 +33,29 @@ public class BankManagerHandler implements BankManager.Iface {
 
         this.accounts.put(account.pesel, account);
 
-        return account.getGuid();
+        System.out.println("[NEW ACCOUNT CREATED]");
+
+        return account;
+    }
+
+    @Override
+    public Account login(String guid) throws AccountDoesNotExist, TException {
+        Account account = null;
+
+        for (Map.Entry<String, Account> entry : this.accounts.entrySet()) {
+            String pesel = entry.getKey();
+            Account account1 = entry.getValue();
+
+            if (account1.getGuid().equals(guid)) {
+                account = account1;
+                break;
+            }
+        }
+
+        if (account == null) {
+            throw new AccountDoesNotExist(guid, "Account does not exist.");
+        }
+
+        return account;
     }
 }

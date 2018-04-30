@@ -96,9 +96,9 @@ class CurrenciesThread extends Thread {
 					Currencies currency = entry.getKey();
 					Float value = entry.getValue();
 
-					entry.setValue(value * 1.5f);
+					entry.setValue(value * 1.1f);
 
-					System.out.println(currency + " " + value * 1.5f);
+					System.out.println(currency + " " + (value * 1.1f));
 				}
 			}
 		}

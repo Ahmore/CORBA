@@ -8,7 +8,7 @@ enum AccountType {
 struct Account {
     1: string name,
     2: string surname,
-    3: i64 pesel,
+    3: string pesel,
     4: double income,
     5: double amount,
     6: string currency,
@@ -38,7 +38,7 @@ struct CreditResponse {
 }
 
 exception AccountExists {
-  1: i64 pesel,
+  1: string pesel,
   2: string message
 }
 
@@ -53,7 +53,8 @@ exception InvalidAccountType {
 }
 
 service BankManager {
-    string create(1: Account newAccount) throws (1: AccountExists ex)
+    Account create(1: Account newAccount) throws (1: AccountExists ex)
+    Account login(1: string guid) throws (1: AccountDoesNotExist ex)
 }
 
 service BankStandard {

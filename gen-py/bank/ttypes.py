@@ -75,8 +75,8 @@ class Account(object):
                 else:
                     iprot.skip(ftype)
             elif fid == 3:
-                if ftype == TType.I64:
-                    self.pesel = iprot.readI64()
+                if ftype == TType.STRING:
+                    self.pesel = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
                 else:
                     iprot.skip(ftype)
             elif fid == 4:
@@ -123,8 +123,8 @@ class Account(object):
             oprot.writeString(self.surname.encode('utf-8') if sys.version_info[0] == 2 else self.surname)
             oprot.writeFieldEnd()
         if self.pesel is not None:
-            oprot.writeFieldBegin('pesel', TType.I64, 3)
-            oprot.writeI64(self.pesel)
+            oprot.writeFieldBegin('pesel', TType.STRING, 3)
+            oprot.writeString(self.pesel.encode('utf-8') if sys.version_info[0] == 2 else self.pesel)
             oprot.writeFieldEnd()
         if self.income is not None:
             oprot.writeFieldBegin('income', TType.DOUBLE, 4)
@@ -455,8 +455,8 @@ class AccountExists(TException):
             if ftype == TType.STOP:
                 break
             if fid == 1:
-                if ftype == TType.I64:
-                    self.pesel = iprot.readI64()
+                if ftype == TType.STRING:
+                    self.pesel = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
                 else:
                     iprot.skip(ftype)
             elif fid == 2:
@@ -475,8 +475,8 @@ class AccountExists(TException):
             return
         oprot.writeStructBegin('AccountExists')
         if self.pesel is not None:
-            oprot.writeFieldBegin('pesel', TType.I64, 1)
-            oprot.writeI64(self.pesel)
+            oprot.writeFieldBegin('pesel', TType.STRING, 1)
+            oprot.writeString(self.pesel.encode('utf-8') if sys.version_info[0] == 2 else self.pesel)
             oprot.writeFieldEnd()
         if self.message is not None:
             oprot.writeFieldBegin('message', TType.STRING, 2)
@@ -646,7 +646,7 @@ Account.thrift_spec = (
     None,  # 0
     (1, TType.STRING, 'name', 'UTF8', None, ),  # 1
     (2, TType.STRING, 'surname', 'UTF8', None, ),  # 2
-    (3, TType.I64, 'pesel', None, None, ),  # 3
+    (3, TType.STRING, 'pesel', 'UTF8', None, ),  # 3
     (4, TType.DOUBLE, 'income', None, None, ),  # 4
     (5, TType.DOUBLE, 'amount', None, None, ),  # 5
     (6, TType.STRING, 'currency', 'UTF8', None, ),  # 6
@@ -680,7 +680,7 @@ CreditResponse.thrift_spec = (
 all_structs.append(AccountExists)
 AccountExists.thrift_spec = (
     None,  # 0
-    (1, TType.I64, 'pesel', None, None, ),  # 1
+    (1, TType.STRING, 'pesel', 'UTF8', None, ),  # 1
     (2, TType.STRING, 'message', 'UTF8', None, ),  # 2
 )
 all_structs.append(AccountDoesNotExist)
