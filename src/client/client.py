@@ -80,7 +80,7 @@ def new_account(bank_manager):
     account.pesel = "12345678908"
     account.income = 3000
     account.amount = 1000
-    account.currency = "PL"
+    account.currency = "PLN"
 
     try:
         account = bank_manager.create(account)
@@ -127,7 +127,8 @@ def account_premium_loop(bank_premium, guid):
             credit_request = CreditRequest()
 
             credit_request.guid = guid
-            credit_request.currency = "USD"
+            credit_request.amount = 1000.0
+            credit_request.currency = "EUR"
 
             from_date = Date()
             from_date.day = 1

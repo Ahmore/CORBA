@@ -249,14 +249,16 @@ class CreditRequest(object):
      - currency
      - fromDate
      - toDate
+     - amount
     """
 
 
-    def __init__(self, guid=None, currency=None, fromDate=None, toDate=None,):
+    def __init__(self, guid=None, currency=None, fromDate=None, toDate=None, amount=None,):
         self.guid = guid
         self.currency = currency
         self.fromDate = fromDate
         self.toDate = toDate
+        self.amount = amount
 
     def read(self, iprot):
         if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
@@ -289,6 +291,11 @@ class CreditRequest(object):
                     self.toDate.read(iprot)
                 else:
                     iprot.skip(ftype)
+            elif fid == 5:
+                if ftype == TType.DOUBLE:
+                    self.amount = iprot.readDouble()
+                else:
+                    iprot.skip(ftype)
             else:
                 iprot.skip(ftype)
             iprot.readFieldEnd()
@@ -315,6 +322,10 @@ class CreditRequest(object):
             oprot.writeFieldBegin('toDate', TType.STRUCT, 4)
             self.toDate.write(oprot)
             oprot.writeFieldEnd()
+        if self.amount is not None:
+            oprot.writeFieldBegin('amount', TType.DOUBLE, 5)
+            oprot.writeDouble(self.amount)
+            oprot.writeFieldEnd()
         oprot.writeFieldStop()
         oprot.writeStructEnd()
 
@@ -336,7 +347,6 @@ class CreditRequest(object):
 class CreditResponse(object):
     """
     Attributes:
-     - guid
      - currency1
      - currency2
      - amount1
@@ -344,8 +354,7 @@ class CreditResponse(object):
     """
 
 
-    def __init__(self, guid=None, currency1=None, currency2=None, amount1=None, amount2=None,):
-        self.guid = guid
+    def __init__(self, currency1=None, currency2=None, amount1=None, amount2=None,):
         self.currency1 = currency1
         self.currency2 = currency2
         self.amount1 = amount1
@@ -362,25 +371,20 @@ class CreditResponse(object):
                 break
             if fid == 1:
                 if ftype == TType.STRING:
-                    self.guid = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
+                    self.currency1 = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
                 else:
                     iprot.skip(ftype)
             elif fid == 2:
                 if ftype == TType.STRING:
-                    self.currency1 = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
-                else:
-                    iprot.skip(ftype)
-            elif fid == 3:
-                if ftype == TType.STRING:
                     self.currency2 = iprot.readString().decode('utf-8') if sys.version_info[0] == 2 else iprot.readString()
                 else:
                     iprot.skip(ftype)
-            elif fid == 4:
+            elif fid == 3:
                 if ftype == TType.DOUBLE:
                     self.amount1 = iprot.readDouble()
                 else:
                     iprot.skip(ftype)
-            elif fid == 5:
+            elif fid == 4:
                 if ftype == TType.DOUBLE:
                     self.amount2 = iprot.readDouble()
                 else:
@@ -395,24 +399,20 @@ class CreditResponse(object):
             oprot.trans.write(oprot._fast_encode(self, [self.__class__, self.thrift_spec]))
             return
         oprot.writeStructBegin('CreditResponse')
-        if self.guid is not None:
-            oprot.writeFieldBegin('guid', TType.STRING, 1)
-            oprot.writeString(self.guid.encode('utf-8') if sys.version_info[0] == 2 else self.guid)
-            oprot.writeFieldEnd()
         if self.currency1 is not None:
-            oprot.writeFieldBegin('currency1', TType.STRING, 2)
+            oprot.writeFieldBegin('currency1', TType.STRING, 1)
             oprot.writeString(self.currency1.encode('utf-8') if sys.version_info[0] == 2 else self.currency1)
             oprot.writeFieldEnd()
         if self.currency2 is not None:
-            oprot.writeFieldBegin('currency2', TType.STRING, 3)
+            oprot.writeFieldBegin('currency2', TType.STRING, 2)
             oprot.writeString(self.currency2.encode('utf-8') if sys.version_info[0] == 2 else self.currency2)
             oprot.writeFieldEnd()
         if self.amount1 is not None:
-            oprot.writeFieldBegin('amount1', TType.DOUBLE, 4)
+            oprot.writeFieldBegin('amount1', TType.DOUBLE, 3)
             oprot.writeDouble(self.amount1)
             oprot.writeFieldEnd()
         if self.amount2 is not None:
-            oprot.writeFieldBegin('amount2', TType.DOUBLE, 5)
+            oprot.writeFieldBegin('amount2', TType.DOUBLE, 4)
             oprot.writeDouble(self.amount2)
             oprot.writeFieldEnd()
         oprot.writeFieldStop()
@@ -667,15 +667,15 @@ CreditRequest.thrift_spec = (
     (2, TType.STRING, 'currency', 'UTF8', None, ),  # 2
     (3, TType.STRUCT, 'fromDate', [Date, None], None, ),  # 3
     (4, TType.STRUCT, 'toDate', [Date, None], None, ),  # 4
+    (5, TType.DOUBLE, 'amount', None, None, ),  # 5
 )
 all_structs.append(CreditResponse)
 CreditResponse.thrift_spec = (
     None,  # 0
-    (1, TType.STRING, 'guid', 'UTF8', None, ),  # 1
-    (2, TType.STRING, 'currency1', 'UTF8', None, ),  # 2
-    (3, TType.STRING, 'currency2', 'UTF8', None, ),  # 3
-    (4, TType.DOUBLE, 'amount1', None, None, ),  # 4
-    (5, TType.DOUBLE, 'amount2', None, None, ),  # 5
+    (1, TType.STRING, 'currency1', 'UTF8', None, ),  # 1
+    (2, TType.STRING, 'currency2', 'UTF8', None, ),  # 2
+    (3, TType.DOUBLE, 'amount1', None, None, ),  # 3
+    (4, TType.DOUBLE, 'amount2', None, None, ),  # 4
 )
 all_structs.append(AccountExists)
 AccountExists.thrift_spec = (

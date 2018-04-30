@@ -4,6 +4,9 @@ import exchanger.Currencies;
 import org.apache.thrift.TException;
 import sr.rpc.bank.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,11 +23,48 @@ public class BankPremiumHandler implements BankPremium.Iface {
     public CreditResponse getCredit(CreditRequest creditRequest) throws AccountDoesNotExist, InvalidAccountType, TException {
         System.out.println("[CREDIT PREMIUM REQUEST]");
 
-        synchronized (this.currenciesState) {
-            // TODO
+        Account account = null;
+
+        for (Map.Entry<String, Account> entry : this.accounts.entrySet()) {
+            String pesel = entry.getKey();
+            Account account1 = entry.getValue();
+
+            if (account1.getGuid().equals(creditRequest.guid)) {
+                account = account1;
+                break;
+            }
         }
 
-        return null;
+        if (account == null) {
+            throw new AccountDoesNotExist(creditRequest.guid, "Account does not exist.");
+        }
+
+        if (account.type == AccountType.STANDARD) {
+            throw new InvalidAccountType(creditRequest.guid, "Invalid account type.");
+        }
+
+        CreditResponse creditResponse = null;
+
+        synchronized (this.currenciesState) {
+            Calendar fromDate = new GregorianCalendar(creditRequest.fromDate.year, creditRequest.fromDate.month-1, creditRequest.fromDate.day);
+            Calendar toDate = new GregorianCalendar(creditRequest.toDate.year, creditRequest.toDate.month-1, creditRequest.toDate.day);
+
+            double years = Math.abs((fromDate.getTimeInMillis() - toDate.getTimeInMillis())/(1000*60*60*24))/365.0;
+            double interest = 10.0;
+
+            double creditCost = years * (1 + interest) * creditRequest.amount;
+
+            double nativeCurrency = this.currenciesState.get(Currencies.valueOf(account.currency));
+            double creditCurrency = this.currenciesState.get(Currencies.valueOf(creditRequest.currency));
+
+            creditResponse = new CreditResponse();
+            creditResponse.currency1 = account.currency;
+            creditResponse.currency2 = creditRequest.currency;
+            creditResponse.amount1 = creditCost * (nativeCurrency / creditCurrency);
+            creditResponse.amount2 = creditCost;
+        }
+
+        return creditResponse;
     }
 
     @Override

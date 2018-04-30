@@ -26,15 +26,15 @@ struct CreditRequest {
     1: string guid,
     2: string currency
     3: Date fromDate,
-    4: Date toDate
+    4: Date toDate,
+    5: double amount
 }
 
 struct CreditResponse {
-    1: string guid,
-    2: string currency1,
-    3: string currency2,
-    4: double amount1,
-    5: double amount2
+    1: string currency1,
+    2: string currency2,
+    3: double amount1,
+    4: double amount2
 }
 
 exception AccountExists {

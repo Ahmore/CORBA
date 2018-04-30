@@ -15,6 +15,7 @@ public class CreditRequest implements org.apache.thrift.TBase<CreditRequest, Cre
   private static final org.apache.thrift.protocol.TField CURRENCY_FIELD_DESC = new org.apache.thrift.protocol.TField("currency", org.apache.thrift.protocol.TType.STRING, (short)2);
   private static final org.apache.thrift.protocol.TField FROM_DATE_FIELD_DESC = new org.apache.thrift.protocol.TField("fromDate", org.apache.thrift.protocol.TType.STRUCT, (short)3);
   private static final org.apache.thrift.protocol.TField TO_DATE_FIELD_DESC = new org.apache.thrift.protocol.TField("toDate", org.apache.thrift.protocol.TType.STRUCT, (short)4);
+  private static final org.apache.thrift.protocol.TField AMOUNT_FIELD_DESC = new org.apache.thrift.protocol.TField("amount", org.apache.thrift.protocol.TType.DOUBLE, (short)5);
 
   private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new CreditRequestStandardSchemeFactory();
   private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new CreditRequestTupleSchemeFactory();
@@ -23,13 +24,15 @@ public class CreditRequest implements org.apache.thrift.TBase<CreditRequest, Cre
   public java.lang.String currency; // required
   public Date fromDate; // required
   public Date toDate; // required
+  public double amount; // required
 
   /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
   public enum _Fields implements org.apache.thrift.TFieldIdEnum {
     GUID((short)1, "guid"),
     CURRENCY((short)2, "currency"),
     FROM_DATE((short)3, "fromDate"),
-    TO_DATE((short)4, "toDate");
+    TO_DATE((short)4, "toDate"),
+    AMOUNT((short)5, "amount");
 
     private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
 
@@ -52,6 +55,8 @@ public class CreditRequest implements org.apache.thrift.TBase<CreditRequest, Cre
           return FROM_DATE;
         case 4: // TO_DATE
           return TO_DATE;
+        case 5: // AMOUNT
+          return AMOUNT;
         default:
           return null;
       }
@@ -92,6 +97,8 @@ public class CreditRequest implements org.apache.thrift.TBase<CreditRequest, Cre
   }
 
   // isset id assignments
+  private static final int __AMOUNT_ISSET_ID = 0;
+  private byte __isset_bitfield = 0;
   public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
   static {
     java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
@@ -103,6 +110,8 @@ public class CreditRequest implements org.apache.thrift.TBase<CreditRequest, Cre
         new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, Date.class)));
     tmpMap.put(_Fields.TO_DATE, new org.apache.thrift.meta_data.FieldMetaData("toDate", org.apache.thrift.TFieldRequirementType.DEFAULT, 
         new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, Date.class)));
+    tmpMap.put(_Fields.AMOUNT, new org.apache.thrift.meta_data.FieldMetaData("amount", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.DOUBLE)));
     metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
     org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(CreditRequest.class, metaDataMap);
   }
@@ -114,19 +123,23 @@ public class CreditRequest implements org.apache.thrift.TBase<CreditRequest, Cre
     java.lang.String guid,
     java.lang.String currency,
     Date fromDate,
-    Date toDate)
+    Date toDate,
+    double amount)
   {
     this();
     this.guid = guid;
     this.currency = currency;
     this.fromDate = fromDate;
     this.toDate = toDate;
+    this.amount = amount;
+    setAmountIsSet(true);
   }
 
   /**
    * Performs a deep copy on <i>other</i>.
    */
   public CreditRequest(CreditRequest other) {
+    __isset_bitfield = other.__isset_bitfield;
     if (other.isSetGuid()) {
       this.guid = other.guid;
     }
@@ -139,6 +152,7 @@ public class CreditRequest implements org.apache.thrift.TBase<CreditRequest, Cre
     if (other.isSetToDate()) {
       this.toDate = new Date(other.toDate);
     }
+    this.amount = other.amount;
   }
 
   public CreditRequest deepCopy() {
@@ -151,6 +165,8 @@ public class CreditRequest implements org.apache.thrift.TBase<CreditRequest, Cre
     this.currency = null;
     this.fromDate = null;
     this.toDate = null;
+    setAmountIsSet(false);
+    this.amount = 0.0;
   }
 
   public java.lang.String getGuid() {
@@ -249,6 +265,29 @@ public class CreditRequest implements org.apache.thrift.TBase<CreditRequest, Cre
     }
   }
 
+  public double getAmount() {
+    return this.amount;
+  }
+
+  public CreditRequest setAmount(double amount) {
+    this.amount = amount;
+    setAmountIsSet(true);
+    return this;
+  }
+
+  public void unsetAmount() {
+    __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __AMOUNT_ISSET_ID);
+  }
+
+  /** Returns true if field amount is set (has been assigned a value) and false otherwise */
+  public boolean isSetAmount() {
+    return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __AMOUNT_ISSET_ID);
+  }
+
+  public void setAmountIsSet(boolean value) {
+    __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __AMOUNT_ISSET_ID, value);
+  }
+
   public void setFieldValue(_Fields field, java.lang.Object value) {
     switch (field) {
     case GUID:
@@ -283,6 +322,14 @@ public class CreditRequest implements org.apache.thrift.TBase<CreditRequest, Cre
       }
       break;
 
+    case AMOUNT:
+      if (value == null) {
+        unsetAmount();
+      } else {
+        setAmount((java.lang.Double)value);
+      }
+      break;
+
     }
   }
 
@@ -299,6 +346,9 @@ public class CreditRequest implements org.apache.thrift.TBase<CreditRequest, Cre
 
     case TO_DATE:
       return getToDate();
+
+    case AMOUNT:
+      return getAmount();
 
     }
     throw new java.lang.IllegalStateException();
@@ -319,6 +369,8 @@ public class CreditRequest implements org.apache.thrift.TBase<CreditRequest, Cre
       return isSetFromDate();
     case TO_DATE:
       return isSetToDate();
+    case AMOUNT:
+      return isSetAmount();
     }
     throw new java.lang.IllegalStateException();
   }
@@ -374,6 +426,15 @@ public class CreditRequest implements org.apache.thrift.TBase<CreditRequest, Cre
         return false;
     }
 
+    boolean this_present_amount = true;
+    boolean that_present_amount = true;
+    if (this_present_amount || that_present_amount) {
+      if (!(this_present_amount && that_present_amount))
+        return false;
+      if (this.amount != that.amount)
+        return false;
+    }
+
     return true;
   }
 
@@ -396,6 +457,8 @@ public class CreditRequest implements org.apache.thrift.TBase<CreditRequest, Cre
     hashCode = hashCode * 8191 + ((isSetToDate()) ? 131071 : 524287);
     if (isSetToDate())
       hashCode = hashCode * 8191 + toDate.hashCode();
+
+    hashCode = hashCode * 8191 + org.apache.thrift.TBaseHelper.hashCode(amount);
 
     return hashCode;
   }
@@ -444,6 +507,16 @@ public class CreditRequest implements org.apache.thrift.TBase<CreditRequest, Cre
     }
     if (isSetToDate()) {
       lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.toDate, other.toDate);
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+    }
+    lastComparison = java.lang.Boolean.valueOf(isSetAmount()).compareTo(other.isSetAmount());
+    if (lastComparison != 0) {
+      return lastComparison;
+    }
+    if (isSetAmount()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.amount, other.amount);
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -499,6 +572,10 @@ public class CreditRequest implements org.apache.thrift.TBase<CreditRequest, Cre
       sb.append(this.toDate);
     }
     first = false;
+    if (!first) sb.append(", ");
+    sb.append("amount:");
+    sb.append(this.amount);
+    first = false;
     sb.append(")");
     return sb.toString();
   }
@@ -524,6 +601,8 @@ public class CreditRequest implements org.apache.thrift.TBase<CreditRequest, Cre
 
   private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
     try {
+      // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
+      __isset_bitfield = 0;
       read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
     } catch (org.apache.thrift.TException te) {
       throw new java.io.IOException(te);
@@ -582,6 +661,14 @@ public class CreditRequest implements org.apache.thrift.TBase<CreditRequest, Cre
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
+          case 5: // AMOUNT
+            if (schemeField.type == org.apache.thrift.protocol.TType.DOUBLE) {
+              struct.amount = iprot.readDouble();
+              struct.setAmountIsSet(true);
+            } else { 
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+            }
+            break;
           default:
             org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
         }
@@ -617,6 +704,9 @@ public class CreditRequest implements org.apache.thrift.TBase<CreditRequest, Cre
         struct.toDate.write(oprot);
         oprot.writeFieldEnd();
       }
+      oprot.writeFieldBegin(AMOUNT_FIELD_DESC);
+      oprot.writeDouble(struct.amount);
+      oprot.writeFieldEnd();
       oprot.writeFieldStop();
       oprot.writeStructEnd();
     }
@@ -647,7 +737,10 @@ public class CreditRequest implements org.apache.thrift.TBase<CreditRequest, Cre
       if (struct.isSetToDate()) {
         optionals.set(3);
       }
-      oprot.writeBitSet(optionals, 4);
+      if (struct.isSetAmount()) {
+        optionals.set(4);
+      }
+      oprot.writeBitSet(optionals, 5);
       if (struct.isSetGuid()) {
         oprot.writeString(struct.guid);
       }
@@ -660,12 +753,15 @@ public class CreditRequest implements org.apache.thrift.TBase<CreditRequest, Cre
       if (struct.isSetToDate()) {
         struct.toDate.write(oprot);
       }
+      if (struct.isSetAmount()) {
+        oprot.writeDouble(struct.amount);
+      }
     }
 
     @Override
     public void read(org.apache.thrift.protocol.TProtocol prot, CreditRequest struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-      java.util.BitSet incoming = iprot.readBitSet(4);
+      java.util.BitSet incoming = iprot.readBitSet(5);
       if (incoming.get(0)) {
         struct.guid = iprot.readString();
         struct.setGuidIsSet(true);
@@ -683,6 +779,10 @@ public class CreditRequest implements org.apache.thrift.TBase<CreditRequest, Cre
         struct.toDate = new Date();
         struct.toDate.read(iprot);
         struct.setToDateIsSet(true);
+      }
+      if (incoming.get(4)) {
+        struct.amount = iprot.readDouble();
+        struct.setAmountIsSet(true);
       }
     }
   }

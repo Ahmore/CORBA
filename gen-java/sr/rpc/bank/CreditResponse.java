@@ -11,16 +11,14 @@ package sr.rpc.bank;
 public class CreditResponse implements org.apache.thrift.TBase<CreditResponse, CreditResponse._Fields>, java.io.Serializable, Cloneable, Comparable<CreditResponse> {
   private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("CreditResponse");
 
-  private static final org.apache.thrift.protocol.TField GUID_FIELD_DESC = new org.apache.thrift.protocol.TField("guid", org.apache.thrift.protocol.TType.STRING, (short)1);
-  private static final org.apache.thrift.protocol.TField CURRENCY1_FIELD_DESC = new org.apache.thrift.protocol.TField("currency1", org.apache.thrift.protocol.TType.STRING, (short)2);
-  private static final org.apache.thrift.protocol.TField CURRENCY2_FIELD_DESC = new org.apache.thrift.protocol.TField("currency2", org.apache.thrift.protocol.TType.STRING, (short)3);
-  private static final org.apache.thrift.protocol.TField AMOUNT1_FIELD_DESC = new org.apache.thrift.protocol.TField("amount1", org.apache.thrift.protocol.TType.DOUBLE, (short)4);
-  private static final org.apache.thrift.protocol.TField AMOUNT2_FIELD_DESC = new org.apache.thrift.protocol.TField("amount2", org.apache.thrift.protocol.TType.DOUBLE, (short)5);
+  private static final org.apache.thrift.protocol.TField CURRENCY1_FIELD_DESC = new org.apache.thrift.protocol.TField("currency1", org.apache.thrift.protocol.TType.STRING, (short)1);
+  private static final org.apache.thrift.protocol.TField CURRENCY2_FIELD_DESC = new org.apache.thrift.protocol.TField("currency2", org.apache.thrift.protocol.TType.STRING, (short)2);
+  private static final org.apache.thrift.protocol.TField AMOUNT1_FIELD_DESC = new org.apache.thrift.protocol.TField("amount1", org.apache.thrift.protocol.TType.DOUBLE, (short)3);
+  private static final org.apache.thrift.protocol.TField AMOUNT2_FIELD_DESC = new org.apache.thrift.protocol.TField("amount2", org.apache.thrift.protocol.TType.DOUBLE, (short)4);
 
   private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new CreditResponseStandardSchemeFactory();
   private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new CreditResponseTupleSchemeFactory();
 
-  public java.lang.String guid; // required
   public java.lang.String currency1; // required
   public java.lang.String currency2; // required
   public double amount1; // required
@@ -28,11 +26,10 @@ public class CreditResponse implements org.apache.thrift.TBase<CreditResponse, C
 
   /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
   public enum _Fields implements org.apache.thrift.TFieldIdEnum {
-    GUID((short)1, "guid"),
-    CURRENCY1((short)2, "currency1"),
-    CURRENCY2((short)3, "currency2"),
-    AMOUNT1((short)4, "amount1"),
-    AMOUNT2((short)5, "amount2");
+    CURRENCY1((short)1, "currency1"),
+    CURRENCY2((short)2, "currency2"),
+    AMOUNT1((short)3, "amount1"),
+    AMOUNT2((short)4, "amount2");
 
     private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
 
@@ -47,15 +44,13 @@ public class CreditResponse implements org.apache.thrift.TBase<CreditResponse, C
      */
     public static _Fields findByThriftId(int fieldId) {
       switch(fieldId) {
-        case 1: // GUID
-          return GUID;
-        case 2: // CURRENCY1
+        case 1: // CURRENCY1
           return CURRENCY1;
-        case 3: // CURRENCY2
+        case 2: // CURRENCY2
           return CURRENCY2;
-        case 4: // AMOUNT1
+        case 3: // AMOUNT1
           return AMOUNT1;
-        case 5: // AMOUNT2
+        case 4: // AMOUNT2
           return AMOUNT2;
         default:
           return null;
@@ -103,8 +98,6 @@ public class CreditResponse implements org.apache.thrift.TBase<CreditResponse, C
   public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
   static {
     java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-    tmpMap.put(_Fields.GUID, new org.apache.thrift.meta_data.FieldMetaData("guid", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     tmpMap.put(_Fields.CURRENCY1, new org.apache.thrift.meta_data.FieldMetaData("currency1", org.apache.thrift.TFieldRequirementType.DEFAULT, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     tmpMap.put(_Fields.CURRENCY2, new org.apache.thrift.meta_data.FieldMetaData("currency2", org.apache.thrift.TFieldRequirementType.DEFAULT, 
@@ -121,14 +114,12 @@ public class CreditResponse implements org.apache.thrift.TBase<CreditResponse, C
   }
 
   public CreditResponse(
-    java.lang.String guid,
     java.lang.String currency1,
     java.lang.String currency2,
     double amount1,
     double amount2)
   {
     this();
-    this.guid = guid;
     this.currency1 = currency1;
     this.currency2 = currency2;
     this.amount1 = amount1;
@@ -142,9 +133,6 @@ public class CreditResponse implements org.apache.thrift.TBase<CreditResponse, C
    */
   public CreditResponse(CreditResponse other) {
     __isset_bitfield = other.__isset_bitfield;
-    if (other.isSetGuid()) {
-      this.guid = other.guid;
-    }
     if (other.isSetCurrency1()) {
       this.currency1 = other.currency1;
     }
@@ -161,37 +149,12 @@ public class CreditResponse implements org.apache.thrift.TBase<CreditResponse, C
 
   @Override
   public void clear() {
-    this.guid = null;
     this.currency1 = null;
     this.currency2 = null;
     setAmount1IsSet(false);
     this.amount1 = 0.0;
     setAmount2IsSet(false);
     this.amount2 = 0.0;
-  }
-
-  public java.lang.String getGuid() {
-    return this.guid;
-  }
-
-  public CreditResponse setGuid(java.lang.String guid) {
-    this.guid = guid;
-    return this;
-  }
-
-  public void unsetGuid() {
-    this.guid = null;
-  }
-
-  /** Returns true if field guid is set (has been assigned a value) and false otherwise */
-  public boolean isSetGuid() {
-    return this.guid != null;
-  }
-
-  public void setGuidIsSet(boolean value) {
-    if (!value) {
-      this.guid = null;
-    }
   }
 
   public java.lang.String getCurrency1() {
@@ -290,14 +253,6 @@ public class CreditResponse implements org.apache.thrift.TBase<CreditResponse, C
 
   public void setFieldValue(_Fields field, java.lang.Object value) {
     switch (field) {
-    case GUID:
-      if (value == null) {
-        unsetGuid();
-      } else {
-        setGuid((java.lang.String)value);
-      }
-      break;
-
     case CURRENCY1:
       if (value == null) {
         unsetCurrency1();
@@ -335,9 +290,6 @@ public class CreditResponse implements org.apache.thrift.TBase<CreditResponse, C
 
   public java.lang.Object getFieldValue(_Fields field) {
     switch (field) {
-    case GUID:
-      return getGuid();
-
     case CURRENCY1:
       return getCurrency1();
 
@@ -361,8 +313,6 @@ public class CreditResponse implements org.apache.thrift.TBase<CreditResponse, C
     }
 
     switch (field) {
-    case GUID:
-      return isSetGuid();
     case CURRENCY1:
       return isSetCurrency1();
     case CURRENCY2:
@@ -389,15 +339,6 @@ public class CreditResponse implements org.apache.thrift.TBase<CreditResponse, C
       return false;
     if (this == that)
       return true;
-
-    boolean this_present_guid = true && this.isSetGuid();
-    boolean that_present_guid = true && that.isSetGuid();
-    if (this_present_guid || that_present_guid) {
-      if (!(this_present_guid && that_present_guid))
-        return false;
-      if (!this.guid.equals(that.guid))
-        return false;
-    }
 
     boolean this_present_currency1 = true && this.isSetCurrency1();
     boolean that_present_currency1 = true && that.isSetCurrency1();
@@ -442,10 +383,6 @@ public class CreditResponse implements org.apache.thrift.TBase<CreditResponse, C
   public int hashCode() {
     int hashCode = 1;
 
-    hashCode = hashCode * 8191 + ((isSetGuid()) ? 131071 : 524287);
-    if (isSetGuid())
-      hashCode = hashCode * 8191 + guid.hashCode();
-
     hashCode = hashCode * 8191 + ((isSetCurrency1()) ? 131071 : 524287);
     if (isSetCurrency1())
       hashCode = hashCode * 8191 + currency1.hashCode();
@@ -469,16 +406,6 @@ public class CreditResponse implements org.apache.thrift.TBase<CreditResponse, C
 
     int lastComparison = 0;
 
-    lastComparison = java.lang.Boolean.valueOf(isSetGuid()).compareTo(other.isSetGuid());
-    if (lastComparison != 0) {
-      return lastComparison;
-    }
-    if (isSetGuid()) {
-      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.guid, other.guid);
-      if (lastComparison != 0) {
-        return lastComparison;
-      }
-    }
     lastComparison = java.lang.Boolean.valueOf(isSetCurrency1()).compareTo(other.isSetCurrency1());
     if (lastComparison != 0) {
       return lastComparison;
@@ -539,14 +466,6 @@ public class CreditResponse implements org.apache.thrift.TBase<CreditResponse, C
     java.lang.StringBuilder sb = new java.lang.StringBuilder("CreditResponse(");
     boolean first = true;
 
-    sb.append("guid:");
-    if (this.guid == null) {
-      sb.append("null");
-    } else {
-      sb.append(this.guid);
-    }
-    first = false;
-    if (!first) sb.append(", ");
     sb.append("currency1:");
     if (this.currency1 == null) {
       sb.append("null");
@@ -615,15 +534,7 @@ public class CreditResponse implements org.apache.thrift.TBase<CreditResponse, C
           break;
         }
         switch (schemeField.id) {
-          case 1: // GUID
-            if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
-              struct.guid = iprot.readString();
-              struct.setGuidIsSet(true);
-            } else { 
-              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
-            }
-            break;
-          case 2: // CURRENCY1
+          case 1: // CURRENCY1
             if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
               struct.currency1 = iprot.readString();
               struct.setCurrency1IsSet(true);
@@ -631,7 +542,7 @@ public class CreditResponse implements org.apache.thrift.TBase<CreditResponse, C
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
-          case 3: // CURRENCY2
+          case 2: // CURRENCY2
             if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
               struct.currency2 = iprot.readString();
               struct.setCurrency2IsSet(true);
@@ -639,7 +550,7 @@ public class CreditResponse implements org.apache.thrift.TBase<CreditResponse, C
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
-          case 4: // AMOUNT1
+          case 3: // AMOUNT1
             if (schemeField.type == org.apache.thrift.protocol.TType.DOUBLE) {
               struct.amount1 = iprot.readDouble();
               struct.setAmount1IsSet(true);
@@ -647,7 +558,7 @@ public class CreditResponse implements org.apache.thrift.TBase<CreditResponse, C
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
-          case 5: // AMOUNT2
+          case 4: // AMOUNT2
             if (schemeField.type == org.apache.thrift.protocol.TType.DOUBLE) {
               struct.amount2 = iprot.readDouble();
               struct.setAmount2IsSet(true);
@@ -670,11 +581,6 @@ public class CreditResponse implements org.apache.thrift.TBase<CreditResponse, C
       struct.validate();
 
       oprot.writeStructBegin(STRUCT_DESC);
-      if (struct.guid != null) {
-        oprot.writeFieldBegin(GUID_FIELD_DESC);
-        oprot.writeString(struct.guid);
-        oprot.writeFieldEnd();
-      }
       if (struct.currency1 != null) {
         oprot.writeFieldBegin(CURRENCY1_FIELD_DESC);
         oprot.writeString(struct.currency1);
@@ -709,25 +615,19 @@ public class CreditResponse implements org.apache.thrift.TBase<CreditResponse, C
     public void write(org.apache.thrift.protocol.TProtocol prot, CreditResponse struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
       java.util.BitSet optionals = new java.util.BitSet();
-      if (struct.isSetGuid()) {
+      if (struct.isSetCurrency1()) {
         optionals.set(0);
       }
-      if (struct.isSetCurrency1()) {
+      if (struct.isSetCurrency2()) {
         optionals.set(1);
       }
-      if (struct.isSetCurrency2()) {
+      if (struct.isSetAmount1()) {
         optionals.set(2);
       }
-      if (struct.isSetAmount1()) {
+      if (struct.isSetAmount2()) {
         optionals.set(3);
       }
-      if (struct.isSetAmount2()) {
-        optionals.set(4);
-      }
-      oprot.writeBitSet(optionals, 5);
-      if (struct.isSetGuid()) {
-        oprot.writeString(struct.guid);
-      }
+      oprot.writeBitSet(optionals, 4);
       if (struct.isSetCurrency1()) {
         oprot.writeString(struct.currency1);
       }
@@ -745,24 +645,20 @@ public class CreditResponse implements org.apache.thrift.TBase<CreditResponse, C
     @Override
     public void read(org.apache.thrift.protocol.TProtocol prot, CreditResponse struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-      java.util.BitSet incoming = iprot.readBitSet(5);
+      java.util.BitSet incoming = iprot.readBitSet(4);
       if (incoming.get(0)) {
-        struct.guid = iprot.readString();
-        struct.setGuidIsSet(true);
-      }
-      if (incoming.get(1)) {
         struct.currency1 = iprot.readString();
         struct.setCurrency1IsSet(true);
       }
-      if (incoming.get(2)) {
+      if (incoming.get(1)) {
         struct.currency2 = iprot.readString();
         struct.setCurrency2IsSet(true);
       }
-      if (incoming.get(3)) {
+      if (incoming.get(2)) {
         struct.amount1 = iprot.readDouble();
         struct.setAmount1IsSet(true);
       }
-      if (incoming.get(4)) {
+      if (incoming.get(3)) {
         struct.amount2 = iprot.readDouble();
         struct.setAmount2IsSet(true);
       }
