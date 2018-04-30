@@ -1,6 +1,6 @@
 package bank;
 
-import common.Currencies;
+import exchanger.Currencies;
 import org.apache.thrift.TException;
 import sr.rpc.bank.*;
 

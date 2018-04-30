@@ -1,6 +1,5 @@
 package exchanger;
 
-import common.Currencies;
 import io.grpc.stub.StreamObserver;
 import sr.grpc.exchanger.CurrenciesList;
 import sr.grpc.exchanger.CurrenciesState;

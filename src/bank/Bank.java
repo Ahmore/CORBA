@@ -1,6 +1,6 @@
 package bank;
 
-import common.Currencies;
+import exchanger.Currencies;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.StatusRuntimeException;
@@ -46,8 +46,7 @@ public class Bank {
 		Bank bank = new Bank("localhost", 50051);
 
 		try {
-			new Thread(() -> multiplex(bank.accounts, bank.currencies)).start();
-//			new Thread(() -> simple(bank.accounts, bank.currencies)).start();
+			new Thread(() -> multiplex(bank.accounts, bank.currencies, Integer.parseInt(args[0]))).start();
 		} catch (Exception x) {
 			x.printStackTrace();
 		}
@@ -60,7 +59,7 @@ public class Bank {
 	}
 
 	public void connectExchanger() {
-		CurrenciesList currenciesList = CurrenciesList.newBuilder().addCurrencies("PLN").addCurrencies("EUR").build();
+		CurrenciesList currenciesList = CurrenciesList.newBuilder().addCurrencies(Currencies.PLN.toString()).addCurrencies(Currencies.EUR.toString()).build();
 		Iterator<CurrenciesState> states;
 
 		try {
@@ -85,16 +84,13 @@ public class Bank {
 		}
 	}
 
-	public static void multiplex(HashMap<String, Account> accounts, HashMap<Currencies, Float> currencies) {
+	public static void multiplex(HashMap<String, Account> accounts, HashMap<Currencies, Float> currencies, Integer port) {
 		try {
-//			HashMap<Long, Account> accounts = new HashMap<>();
-//			HashMap<Currencies, Float> currencies = new HashMap<>();
-
 			BankManager.Processor<BankManagerHandler> processor1 = new BankManager.Processor<BankManagerHandler>(new BankManagerHandler(accounts));
 			BankStandard.Processor<BankStandardHandler> processor2 = new BankStandard.Processor<BankStandardHandler>(new BankStandardHandler(accounts, currencies));
 			BankPremium.Processor<BankPremiumHandler> processor3 = new BankPremium.Processor<BankPremiumHandler>(new BankPremiumHandler(accounts, currencies));
 
-			TServerTransport serverTransport = new TServerSocket(9999);
+			TServerTransport serverTransport = new TServerSocket(port);
 
 			TProtocolFactory protocolFactory = new TBinaryProtocol.Factory();
 
@@ -112,23 +108,4 @@ public class Bank {
 			e.printStackTrace();
 		}
 	}
-	public static void simple(HashMap<String, Account> accounts, HashMap<Currencies, Float> currencies) {
-		try {
-			BankManager.Processor<BankManagerHandler> processor1 = new BankManager.Processor<BankManagerHandler>(new BankManagerHandler(accounts));
-			BankStandard.Processor<BankStandardHandler> processor2 = new BankStandard.Processor<BankStandardHandler>(new BankStandardHandler(accounts, currencies));
-			BankPremium.Processor<BankPremiumHandler> processor3 = new BankPremium.Processor<BankPremiumHandler>(new BankPremiumHandler(accounts, currencies));
-
-			TServerTransport serverTransport = new TServerSocket(9099);
-
-			TProtocolFactory protocolFactory = new TBinaryProtocol.Factory();
-
-			TServer server = new TSimpleServer(new TServer.Args(serverTransport).protocolFactory(protocolFactory).processor(processor1));
-
-			System.out.println("Starting the simple server...");
-			server.serve();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 }

@@ -40,6 +40,8 @@ public class BankManagerHandler implements BankManager.Iface {
 
     @Override
     public Account login(String guid) throws AccountDoesNotExist, TException {
+        System.out.println("[LOGIN ACCOUNT REQUEST]");
+
         Account account = null;
 
         for (Map.Entry<String, Account> entry : this.accounts.entrySet()) {

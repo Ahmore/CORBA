@@ -1,4 +1,4 @@
-package common;
+package exchanger;
 
 public enum Currencies {
     PLN,

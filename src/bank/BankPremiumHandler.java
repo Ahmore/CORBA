@@ -1,6 +1,6 @@
 package bank;
 
-import common.Currencies;
+import exchanger.Currencies;
 import org.apache.thrift.TException;
 import sr.rpc.bank.*;
 
@@ -18,6 +18,8 @@ public class BankPremiumHandler implements BankPremium.Iface {
 
     @Override
     public CreditResponse getCredit(CreditRequest creditRequest) throws AccountDoesNotExist, InvalidAccountType, TException {
+        System.out.println("[CREDIT PREMIUM REQUEST]");
+
         synchronized (this.currenciesState) {
             // TODO
         }

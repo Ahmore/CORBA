@@ -1,12 +1,10 @@
 package exchanger;
 
-import common.Currencies;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 
 public class ExchangerServer {
@@ -24,7 +22,7 @@ public class ExchangerServer {
 		System.out.println("[EXCHANGER STARTED] Post: " + port);
 
 		// Start currencies oscillations
-		new CurrenciesThread(state).start();
+		new CurrenciesOscillator(state).start();
 
 		Runtime.getRuntime().addShutdownHook(new Thread() {
 			@Override
@@ -41,10 +39,13 @@ public class ExchangerServer {
 		HashMap<Currencies, Float> state = new HashMap<>();
 		Random generator = new Random();
 
+		System.out.println("[INITIAL CURRENCIES]");
+
 		for (Currencies currency : Currencies.values()) {
 			Float value = generator.nextFloat();
 			state.put(currency, value);
-			System.out.println(value);
+
+			System.out.println("[" + currency.toString() + "] " + value);
 		}
 
 		return state;
@@ -73,34 +74,5 @@ public class ExchangerServer {
 		server.start();
 		server.blockUntilShutdown();
 	}
-
 }
 
-class CurrenciesThread extends Thread {
-	private HashMap<Currencies, Float> state;
-
-	CurrenciesThread(HashMap<Currencies, Float> state) {
-		this.state = state;
-	}
-
-	public void run() {
-		while (true) {
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-
-			synchronized (this.state) {
-				for (Map.Entry<Currencies, Float> entry : this.state.entrySet()) {
-					Currencies currency = entry.getKey();
-					Float value = entry.getValue();
-
-					entry.setValue(value * 1.1f);
-
-					System.out.println(currency + " " + (value * 1.1f));
-				}
-			}
-		}
-	}
-}
