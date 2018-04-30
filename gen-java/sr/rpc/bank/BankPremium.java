@@ -12,7 +12,7 @@ public class BankPremium {
 
   public interface Iface extends BankStandard.Iface {
 
-    public CreditResponse getCredit(CreditRequest creditRequest) throws AccountDoesNotExist, InvalidAccountType, org.apache.thrift.TException;
+    public CreditResponse getCredit(CreditRequest creditRequest) throws AccountDoesNotExist, InvalidAccountType, InvalidCurrency, org.apache.thrift.TException;
 
   }
 
@@ -42,7 +42,7 @@ public class BankPremium {
       super(iprot, oprot);
     }
 
-    public CreditResponse getCredit(CreditRequest creditRequest) throws AccountDoesNotExist, InvalidAccountType, org.apache.thrift.TException
+    public CreditResponse getCredit(CreditRequest creditRequest) throws AccountDoesNotExist, InvalidAccountType, InvalidCurrency, org.apache.thrift.TException
     {
       send_getCredit(creditRequest);
       return recv_getCredit();
@@ -55,7 +55,7 @@ public class BankPremium {
       sendBase("getCredit", args);
     }
 
-    public CreditResponse recv_getCredit() throws AccountDoesNotExist, InvalidAccountType, org.apache.thrift.TException
+    public CreditResponse recv_getCredit() throws AccountDoesNotExist, InvalidAccountType, InvalidCurrency, org.apache.thrift.TException
     {
       getCredit_result result = new getCredit_result();
       receiveBase(result, "getCredit");
@@ -67,6 +67,9 @@ public class BankPremium {
       }
       if (result.ex2 != null) {
         throw result.ex2;
+      }
+      if (result.ex3 != null) {
+        throw result.ex3;
       }
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "getCredit failed: unknown result");
     }
@@ -111,7 +114,7 @@ public class BankPremium {
         prot.writeMessageEnd();
       }
 
-      public CreditResponse getResult() throws AccountDoesNotExist, InvalidAccountType, org.apache.thrift.TException {
+      public CreditResponse getResult() throws AccountDoesNotExist, InvalidAccountType, InvalidCurrency, org.apache.thrift.TException {
         if (getState() != org.apache.thrift.async.TAsyncMethodCall.State.RESPONSE_READ) {
           throw new java.lang.IllegalStateException("Method call not finished!");
         }
@@ -164,6 +167,8 @@ public class BankPremium {
           result.ex1 = ex1;
         } catch (InvalidAccountType ex2) {
           result.ex2 = ex2;
+        } catch (InvalidCurrency ex3) {
+          result.ex3 = ex3;
         }
         return result;
       }
@@ -222,6 +227,10 @@ public class BankPremium {
             } else if (e instanceof InvalidAccountType) {
               result.ex2 = (InvalidAccountType) e;
               result.setEx2IsSet(true);
+              msg = result;
+            } else if (e instanceof InvalidCurrency) {
+              result.ex3 = (InvalidCurrency) e;
+              result.setEx3IsSet(true);
               msg = result;
             } else if (e instanceof org.apache.thrift.transport.TTransportException) {
               _LOGGER.error("TTransportException inside handler", e);
@@ -630,6 +639,7 @@ public class BankPremium {
     private static final org.apache.thrift.protocol.TField SUCCESS_FIELD_DESC = new org.apache.thrift.protocol.TField("success", org.apache.thrift.protocol.TType.STRUCT, (short)0);
     private static final org.apache.thrift.protocol.TField EX1_FIELD_DESC = new org.apache.thrift.protocol.TField("ex1", org.apache.thrift.protocol.TType.STRUCT, (short)1);
     private static final org.apache.thrift.protocol.TField EX2_FIELD_DESC = new org.apache.thrift.protocol.TField("ex2", org.apache.thrift.protocol.TType.STRUCT, (short)2);
+    private static final org.apache.thrift.protocol.TField EX3_FIELD_DESC = new org.apache.thrift.protocol.TField("ex3", org.apache.thrift.protocol.TType.STRUCT, (short)3);
 
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new getCredit_resultStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new getCredit_resultTupleSchemeFactory();
@@ -637,12 +647,14 @@ public class BankPremium {
     public CreditResponse success; // required
     public AccountDoesNotExist ex1; // required
     public InvalidAccountType ex2; // required
+    public InvalidCurrency ex3; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       SUCCESS((short)0, "success"),
       EX1((short)1, "ex1"),
-      EX2((short)2, "ex2");
+      EX2((short)2, "ex2"),
+      EX3((short)3, "ex3");
 
       private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
 
@@ -663,6 +675,8 @@ public class BankPremium {
             return EX1;
           case 2: // EX2
             return EX2;
+          case 3: // EX3
+            return EX3;
           default:
             return null;
         }
@@ -712,6 +726,8 @@ public class BankPremium {
           new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, AccountDoesNotExist.class)));
       tmpMap.put(_Fields.EX2, new org.apache.thrift.meta_data.FieldMetaData("ex2", org.apache.thrift.TFieldRequirementType.DEFAULT, 
           new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, InvalidAccountType.class)));
+      tmpMap.put(_Fields.EX3, new org.apache.thrift.meta_data.FieldMetaData("ex3", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, InvalidCurrency.class)));
       metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
       org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(getCredit_result.class, metaDataMap);
     }
@@ -722,12 +738,14 @@ public class BankPremium {
     public getCredit_result(
       CreditResponse success,
       AccountDoesNotExist ex1,
-      InvalidAccountType ex2)
+      InvalidAccountType ex2,
+      InvalidCurrency ex3)
     {
       this();
       this.success = success;
       this.ex1 = ex1;
       this.ex2 = ex2;
+      this.ex3 = ex3;
     }
 
     /**
@@ -743,6 +761,9 @@ public class BankPremium {
       if (other.isSetEx2()) {
         this.ex2 = new InvalidAccountType(other.ex2);
       }
+      if (other.isSetEx3()) {
+        this.ex3 = new InvalidCurrency(other.ex3);
+      }
     }
 
     public getCredit_result deepCopy() {
@@ -754,6 +775,7 @@ public class BankPremium {
       this.success = null;
       this.ex1 = null;
       this.ex2 = null;
+      this.ex3 = null;
     }
 
     public CreditResponse getSuccess() {
@@ -828,6 +850,30 @@ public class BankPremium {
       }
     }
 
+    public InvalidCurrency getEx3() {
+      return this.ex3;
+    }
+
+    public getCredit_result setEx3(InvalidCurrency ex3) {
+      this.ex3 = ex3;
+      return this;
+    }
+
+    public void unsetEx3() {
+      this.ex3 = null;
+    }
+
+    /** Returns true if field ex3 is set (has been assigned a value) and false otherwise */
+    public boolean isSetEx3() {
+      return this.ex3 != null;
+    }
+
+    public void setEx3IsSet(boolean value) {
+      if (!value) {
+        this.ex3 = null;
+      }
+    }
+
     public void setFieldValue(_Fields field, java.lang.Object value) {
       switch (field) {
       case SUCCESS:
@@ -854,6 +900,14 @@ public class BankPremium {
         }
         break;
 
+      case EX3:
+        if (value == null) {
+          unsetEx3();
+        } else {
+          setEx3((InvalidCurrency)value);
+        }
+        break;
+
       }
     }
 
@@ -867,6 +921,9 @@ public class BankPremium {
 
       case EX2:
         return getEx2();
+
+      case EX3:
+        return getEx3();
 
       }
       throw new java.lang.IllegalStateException();
@@ -885,6 +942,8 @@ public class BankPremium {
         return isSetEx1();
       case EX2:
         return isSetEx2();
+      case EX3:
+        return isSetEx3();
       }
       throw new java.lang.IllegalStateException();
     }
@@ -931,6 +990,15 @@ public class BankPremium {
           return false;
       }
 
+      boolean this_present_ex3 = true && this.isSetEx3();
+      boolean that_present_ex3 = true && that.isSetEx3();
+      if (this_present_ex3 || that_present_ex3) {
+        if (!(this_present_ex3 && that_present_ex3))
+          return false;
+        if (!this.ex3.equals(that.ex3))
+          return false;
+      }
+
       return true;
     }
 
@@ -949,6 +1017,10 @@ public class BankPremium {
       hashCode = hashCode * 8191 + ((isSetEx2()) ? 131071 : 524287);
       if (isSetEx2())
         hashCode = hashCode * 8191 + ex2.hashCode();
+
+      hashCode = hashCode * 8191 + ((isSetEx3()) ? 131071 : 524287);
+      if (isSetEx3())
+        hashCode = hashCode * 8191 + ex3.hashCode();
 
       return hashCode;
     }
@@ -987,6 +1059,16 @@ public class BankPremium {
       }
       if (isSetEx2()) {
         lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.ex2, other.ex2);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = java.lang.Boolean.valueOf(isSetEx3()).compareTo(other.isSetEx3());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetEx3()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.ex3, other.ex3);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -1032,6 +1114,14 @@ public class BankPremium {
         sb.append("null");
       } else {
         sb.append(this.ex2);
+      }
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("ex3:");
+      if (this.ex3 == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.ex3);
       }
       first = false;
       sb.append(")");
@@ -1107,6 +1197,15 @@ public class BankPremium {
                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
               }
               break;
+            case 3: // EX3
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+                struct.ex3 = new InvalidCurrency();
+                struct.ex3.read(iprot);
+                struct.setEx3IsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
             default:
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
           }
@@ -1137,6 +1236,11 @@ public class BankPremium {
           struct.ex2.write(oprot);
           oprot.writeFieldEnd();
         }
+        if (struct.ex3 != null) {
+          oprot.writeFieldBegin(EX3_FIELD_DESC);
+          struct.ex3.write(oprot);
+          oprot.writeFieldEnd();
+        }
         oprot.writeFieldStop();
         oprot.writeStructEnd();
       }
@@ -1164,7 +1268,10 @@ public class BankPremium {
         if (struct.isSetEx2()) {
           optionals.set(2);
         }
-        oprot.writeBitSet(optionals, 3);
+        if (struct.isSetEx3()) {
+          optionals.set(3);
+        }
+        oprot.writeBitSet(optionals, 4);
         if (struct.isSetSuccess()) {
           struct.success.write(oprot);
         }
@@ -1174,12 +1281,15 @@ public class BankPremium {
         if (struct.isSetEx2()) {
           struct.ex2.write(oprot);
         }
+        if (struct.isSetEx3()) {
+          struct.ex3.write(oprot);
+        }
       }
 
       @Override
       public void read(org.apache.thrift.protocol.TProtocol prot, getCredit_result struct) throws org.apache.thrift.TException {
         org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-        java.util.BitSet incoming = iprot.readBitSet(3);
+        java.util.BitSet incoming = iprot.readBitSet(4);
         if (incoming.get(0)) {
           struct.success = new CreditResponse();
           struct.success.read(iprot);
@@ -1194,6 +1304,11 @@ public class BankPremium {
           struct.ex2 = new InvalidAccountType();
           struct.ex2.read(iprot);
           struct.setEx2IsSet(true);
+        }
+        if (incoming.get(3)) {
+          struct.ex3 = new InvalidCurrency();
+          struct.ex3.read(iprot);
+          struct.setEx3IsSet(true);
         }
       }
     }

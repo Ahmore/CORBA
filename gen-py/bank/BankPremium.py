@@ -65,6 +65,8 @@ class Client(bank.BankStandard.Client, Iface):
             raise result.ex1
         if result.ex2 is not None:
             raise result.ex2
+        if result.ex3 is not None:
+            raise result.ex3
         raise TApplicationException(TApplicationException.MISSING_RESULT, "getCredit failed: unknown result")
 
 
@@ -104,6 +106,9 @@ class Processor(bank.BankStandard.Processor, Iface, TProcessor):
         except InvalidAccountType as ex2:
             msg_type = TMessageType.REPLY
             result.ex2 = ex2
+        except InvalidCurrency as ex3:
+            msg_type = TMessageType.REPLY
+            result.ex3 = ex3
         except TApplicationException as ex:
             logging.exception('TApplication exception in handler')
             msg_type = TMessageType.EXCEPTION
@@ -188,13 +193,15 @@ class getCredit_result(object):
      - success
      - ex1
      - ex2
+     - ex3
     """
 
 
-    def __init__(self, success=None, ex1=None, ex2=None,):
+    def __init__(self, success=None, ex1=None, ex2=None, ex3=None,):
         self.success = success
         self.ex1 = ex1
         self.ex2 = ex2
+        self.ex3 = ex3
 
     def read(self, iprot):
         if iprot._fast_decode is not None and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None:
@@ -223,6 +230,12 @@ class getCredit_result(object):
                     self.ex2.read(iprot)
                 else:
                     iprot.skip(ftype)
+            elif fid == 3:
+                if ftype == TType.STRUCT:
+                    self.ex3 = InvalidCurrency()
+                    self.ex3.read(iprot)
+                else:
+                    iprot.skip(ftype)
             else:
                 iprot.skip(ftype)
             iprot.readFieldEnd()
@@ -245,6 +258,10 @@ class getCredit_result(object):
             oprot.writeFieldBegin('ex2', TType.STRUCT, 2)
             self.ex2.write(oprot)
             oprot.writeFieldEnd()
+        if self.ex3 is not None:
+            oprot.writeFieldBegin('ex3', TType.STRUCT, 3)
+            self.ex3.write(oprot)
+            oprot.writeFieldEnd()
         oprot.writeFieldStop()
         oprot.writeStructEnd()
 
@@ -266,6 +283,7 @@ getCredit_result.thrift_spec = (
     (0, TType.STRUCT, 'success', [CreditResponse, None], None, ),  # 0
     (1, TType.STRUCT, 'ex1', [AccountDoesNotExist, None], None, ),  # 1
     (2, TType.STRUCT, 'ex2', [InvalidAccountType, None], None, ),  # 2
+    (3, TType.STRUCT, 'ex3', [InvalidCurrency, None], None, ),  # 3
 )
 fix_spec(all_structs)
 del all_structs

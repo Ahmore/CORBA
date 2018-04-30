@@ -51,15 +51,15 @@ public class Bank {
 			x.printStackTrace();
 		}
 
-		bank.connectExchanger();
+		bank.connectExchanger(args[1], args[2]);
 	}
 
 	public void shutdown() throws InterruptedException {
 		channel.shutdown().awaitTermination(5, TimeUnit.SECONDS);
 	}
 
-	public void connectExchanger() {
-		CurrenciesList currenciesList = CurrenciesList.newBuilder().addCurrencies(Currencies.PLN.toString()).addCurrencies(Currencies.EUR.toString()).build();
+	public void connectExchanger(String currency1, String currency2) {
+		CurrenciesList currenciesList = CurrenciesList.newBuilder().addCurrencies(currency1).addCurrencies(currency2).build();
 		Iterator<CurrenciesState> states;
 
 		try {
@@ -101,7 +101,7 @@ public class Bank {
 
 			TServer server = new TSimpleServer(new TServer.Args(serverTransport).protocolFactory(protocolFactory).processor(multiplex));
 
-			System.out.println("[STARTING SERVER]");
+			System.out.println("[STARTING BANK] Port: " + port.toString());
 
 			server.serve();
 		} catch (Exception e) {

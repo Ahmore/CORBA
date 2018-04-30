@@ -52,6 +52,11 @@ exception InvalidAccountType {
   2: string message
 }
 
+exception InvalidCurrency {
+  1: string currency,
+  2: string message
+}
+
 service BankManager {
     Account create(1: Account newAccount) throws (1: AccountExists ex)
     Account login(1: string guid) throws (1: AccountDoesNotExist ex)
@@ -62,5 +67,5 @@ service BankStandard {
 }
 
 service BankPremium extends BankStandard {
-    CreditResponse getCredit(1: CreditRequest creditRequest) throws (1: AccountDoesNotExist ex1, 2: InvalidAccountType ex2)
+    CreditResponse getCredit(1: CreditRequest creditRequest) throws (1: AccountDoesNotExist ex1, 2: InvalidAccountType ex2, 3: InvalidCurrency ex3)
 }

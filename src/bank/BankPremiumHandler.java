@@ -4,7 +4,6 @@ import exchanger.Currencies;
 import org.apache.thrift.TException;
 import sr.rpc.bank.*;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
@@ -20,7 +19,7 @@ public class BankPremiumHandler implements BankPremium.Iface {
     }
 
     @Override
-    public CreditResponse getCredit(CreditRequest creditRequest) throws AccountDoesNotExist, InvalidAccountType, TException {
+    public CreditResponse getCredit(CreditRequest creditRequest) throws AccountDoesNotExist, InvalidAccountType, InvalidCurrency, TException {
         System.out.println("[CREDIT PREMIUM REQUEST]");
 
         Account account = null;
@@ -46,11 +45,19 @@ public class BankPremiumHandler implements BankPremium.Iface {
         CreditResponse creditResponse = null;
 
         synchronized (this.currenciesState) {
+            if (!this.currenciesState.containsKey(Currencies.valueOf(account.currency))) {
+                throw new InvalidCurrency(account.currency, "Currency not supported");
+            }
+
+            if (!this.currenciesState.containsKey(Currencies.valueOf(creditRequest.currency))) {
+                throw new InvalidCurrency(creditRequest.currency, "Currency not supported");
+            }
+
             Calendar fromDate = new GregorianCalendar(creditRequest.fromDate.year, creditRequest.fromDate.month-1, creditRequest.fromDate.day);
             Calendar toDate = new GregorianCalendar(creditRequest.toDate.year, creditRequest.toDate.month-1, creditRequest.toDate.day);
 
             double years = Math.abs((fromDate.getTimeInMillis() - toDate.getTimeInMillis())/(1000*60*60*24))/365.0;
-            double interest = 10.0;
+            double interest = 0.1;
 
             double creditCost = years * (1 + interest) * creditRequest.amount;
 

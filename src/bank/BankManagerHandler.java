@@ -17,7 +17,6 @@ public class BankManagerHandler implements BankManager.Iface {
     public Account create(Account account) throws AccountExists, TException {
         System.out.println("[NEW ACCOUNT REQUEST]");
 
-        // TODO Pesel should be string
         if (this.accounts.containsKey(account.pesel)) {
             throw new AccountExists(account.pesel, "Client already exists.");
         }
